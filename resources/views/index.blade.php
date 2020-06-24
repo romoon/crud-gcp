@@ -8,7 +8,7 @@
             <div class="posts col-md-10 mx-auto mt-3">
               <div class="row">
                   <div class="col-md-10">
-                    <h2>公開投稿一覧</h2>
+                    <h2>投稿一覧</h2>
                   </div>
               </div>
                 @foreach($posts as $post)
