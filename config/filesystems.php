@@ -68,10 +68,9 @@ return [
             'driver' => 's3',
             'key'    => env('GCS_ACCESS_KEY'),
             'secret' => env('GCS_SECRET_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
+            'region' => env('GCS_DEFAULT_REGION'),
             'bucket' => env('GCS_BUCKET'),
-                        'base_url' => 'https://storage.googleapis.com'
-
+            'url' => 'https://storage.googleapis.com'
         ],
     ],
 
