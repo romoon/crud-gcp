@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Posts;
 use Storage;
+use Google\Cloud\Storage\StorageClient;
 
 class PostController extends Controller
 {
@@ -26,8 +27,17 @@ class PostController extends Controller
 
       // フォームから画像が送信されてきたら、保存して、$posts->image_path に画像のパスを保存する
       if (isset($form['image'])) {
-          $path = $request->file('image')->store('public/image');
-          $posts->image_path = basename($path);
+          $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+          $posts->image_path = Storage::disk('s3')->url($path);
+          // $client = new StorageClient();
+          // $bucket = $client->bucket('heroku-crud-post-image');
+          // $bucket->upload(
+          //   fopen($form['image'], 'r')
+          // );
+          // $path = $request->file('image');
+          // $posts->image_path = basename($path);
+          // $path = $request->file('image')->store('public/image');
+          // $posts->image_path = basename($path);
       } else {
           $posts->image_path = null;
       }
@@ -75,8 +85,10 @@ class PostController extends Controller
       $posts_form = $request->all();
 
       if (isset($posts_form['image'])) {
-        $path = $request->file('image')->store('public/image');
-        $posts->image_path = basename($path);
+        $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+        $posts->image_path = Storage::disk('s3')->url($path);
+        // $path = $request->file('image')->store('public/image');
+        // $posts->image_path = basename($path);
         unset($posts_form['image']);
       } elseif (isset($request->remove)) {
         $posts->image_path = null;
