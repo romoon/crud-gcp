@@ -27,15 +27,16 @@ class PostController extends Controller
 
       // フォームから画像が送信されてきたら、保存して、$posts->image_path に画像のパスを保存する
       if (isset($form['image'])) {
-          $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
-          $posts->image_path = Storage::disk('s3')->url($path);
-          // $client = new StorageClient();
-          // $bucket = $client->bucket('heroku-crud-post-image');
-          // $bucket->upload(
-          //   fopen($form['image'], 'r')
-          // );
-          // $path = $request->file('image');
-          // $posts->image_path = basename($path);
+          // $currentuser = \Auth::user()->id;
+          $client = new StorageClient();
+          $bucket = $client->bucket('heroku-crud-post-image');
+          $bucket->upload(
+            fopen($form['image'], 'r')
+          );
+          $path = $request->file('image');
+          $posts->image_path = basename($path);
+          // $path = Storage::disk('s3')->putFile('/' . $currentuser ,$form['image'],'public');
+          // $posts->image_path = Storage::disk('s3')->url($path);
           // $path = $request->file('image')->store('public/image');
           // $posts->image_path = basename($path);
       } else {
@@ -85,8 +86,13 @@ class PostController extends Controller
       $posts_form = $request->all();
 
       if (isset($posts_form['image'])) {
-        $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
-        $posts->image_path = Storage::disk('s3')->url($path);
+        $client = new StorageClient();
+        $bucket = $client->bucket('heroku-crud-post-image');
+        $bucket->upload(
+          fopen($form['image'], 'r')
+        );
+        $path = $request->file('image');
+        $posts->image_path = basename($path);
         // $path = $request->file('image')->store('public/image');
         // $posts->image_path = basename($path);
         unset($posts_form['image']);
