@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => 'gcs',
 
     /*
     |--------------------------------------------------------------------------
@@ -64,6 +64,15 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'gcs' => [
+            'driver' => 's3',
+            'key'    => env('GCS_ACCESS_KEY'),
+            'secret' => env('GCS_SECRET_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('GCS_BUCKET'),
+                        'base_url' => 'https://storage.googleapis.com'
+
+        ],
     ],
 
 ];
