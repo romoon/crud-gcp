@@ -28,8 +28,8 @@ class PostController extends Controller
       // フォームから画像が送信されてきたら、保存して、$posts->image_path に画像のパスを保存する
       if (isset($form['image'])) {
           // $currentuser = \Auth::user()->id;
-          $client = new StorageClient();
-          $bucket = $client->bucket('heroku-crud-post-image');
+          $storage = new StorageClient();
+          $bucket = $storage->bucket('heroku-crud-post-image');
           $bucket->upload(
             fopen($form['image'], 'r')
           );
@@ -86,8 +86,8 @@ class PostController extends Controller
       $posts_form = $request->all();
 
       if (isset($posts_form['image'])) {
-        $client = new StorageClient();
-        $bucket = $client->bucket('heroku-crud-post-image');
+        $storage = new StorageClient();
+        $bucket = $storage->bucket('heroku-crud-post-image');
         $bucket->upload(
           fopen($form['image'], 'r')
         );
