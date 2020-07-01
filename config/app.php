@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Temp_CRUD'),
+    'name' => env('APP_NAME', 'CRUD-GCP'),
 
     /*
     |--------------------------------------------------------------------------
@@ -123,6 +123,12 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'gcs_private_key_id' => env('GCS_PRIVATE_KEY_ID'),
+
+    'gcs_private_key' => env('GCS_PRIVATE_KEY'),
+
+    'gcs_project_id' => env('GCS_PROJECT_ID'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -165,7 +171,7 @@ return [
         /*
          * Package Service Providers...
          */
-        
+
         /*
          * Application Service Providers...
          */
