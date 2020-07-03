@@ -29,8 +29,8 @@ class PostController extends Controller
           $currentuser = \Auth::user()->id;
           $path = Storage::disk('gcs')->putFile('/' . $currentuser ,$form['image'],'public');
           $posts->image_path = Storage::disk('gcs')->url($path);
-          $path = $request->file('image')->store('public/image');
-          $posts->image_path = basename($path);
+          // $path = $request->file('image')->store('public/image');
+          // $posts->image_path = basename($path);
           // $storage = new StorageClient();
           // $bucket = $storage->bucket('heroku-crud-post-image');
           // $bucket->upload(
@@ -88,8 +88,6 @@ class PostController extends Controller
         $currentuser = \Auth::user()->id;
         $path = Storage::disk('gcs')->putFile('/' . $currentuser ,$posts_form['image'],'public');
         $posts->image_path = Storage::disk('gcs')->url($path);
-        $path = $request->file('image')->store('public/image');
-        $posts->image_path = basename($path);
         // $path = $request->file('image')->store('public/image');
         // $posts->image_path = basename($path);
         unset($posts_form['image']);

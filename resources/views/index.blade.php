@@ -16,8 +16,7 @@
                         <div class="row">
                             <div class="image col-md-6 mt-4">
                                 @if ($post->image_path)
-                                    <img src="{{ $post->image_path) }}">
-                                    <!-- <img src="{{ asset('storage/image/' . $post->image_path) }}"> -->
+                                    <img src="{{ $post->image_path }}">
                                     <!-- <img src="https://storage.cloud.google.com/heroku-crud-post-image/{{ $post->image_path }}"> -->
                                 @endif
                             </div>
