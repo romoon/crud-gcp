@@ -70,7 +70,7 @@ return [
             'secret' => env('GCS_SECRET_KEY'),
             'region' => env('GCS_DEFAULT_REGION'),
             'bucket' => env('GCS_BUCKET'),
-            'url' => 'https://storage.googleapis.com'
+            'endpoint'=> env('GCS_BASE_URL'),
         ],
     ],
 
